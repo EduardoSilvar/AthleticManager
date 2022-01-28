@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Login</title>
+
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+
+            }
+            .segundo-conteudo{
+                position: absolute;
+                display: flex;
+                /*/display: none;/*/
+
+            }
+            .primeiro-conteudo{   
+                display: flex;
+                position: absolute;
+                display: none;
+            }
+            form{
+                display: flex;
+                flex-direction: column;
+            }
+            .conteudo{ background-color: #fff;
+                       border-radius: 15px;
+                       width: 960px;
+                       height: 60%;
+                       justify-content: space-between;
+                       align-items: center;
+                       position: relative;
+            }
+            .conteudo::before{
+                content: "";
+                position: absolute;
+                background-color: dodgerblue;
+                width: 40%;
+                height: 100%;
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+                left: 0;
+                left: 60%;
+            }
+            .primeira-coluna{
+                text-align: center;
+                width: 40%;
+                z-index: 10;
+            }
+            .segunda-coluna{
+                width: 60%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+            }
+            .titulo{
+                font-size: 28px;
+                font-weight: bold;
+                text-transform: capitalize;
+            }
+            .titulo-criarconta{
+                color: #fff;
+            }
+            .titulo-bemvindo{
+                color:dodgerblue;
+            }
+            .descrição{
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 30px;
+            }
+            .descrição-primeira{
+                color: #fff;
+                font-family: sans-serif;
+                font-size: 14px;
+            }
+            .descrição-segunda{
+                color: dodgerblue;
+                font-family: sans-serif;
+                font-size: 14px;
+            }
+            .segundo-conteudo .primeira-coluna{
+                order: 2;
+            }
+            .segundo-conteudo .segunda-coluna{
+                order: 1;
+            }
+
+        </style>
+    </h:head>
+    <h:body>
+        <div clss="tudo" style="    display: flex;
+             justify-content: center;
+             align-items: center;
+             height: 100vh;
+             background-color: silver;
+             ">
+            <div class="conteudo primeiro-conteudo">
+                <div class="primeira-coluna">
+                    <h3 class="titulo titulo-criarconta">criar conta</h3>
+                    <p class="descrição descrição-primeira">faca sua conecção aqui</p>
+                    <p class="descrição descrição-primeira">por favor insira seus  dados pessoas </p>
+                    <!--<button  class="btn btn-primeiro">sign in</button>-->
+                    <a href="/AthleticManager/Login.xhtml"><p:button value="sign up" styleClass="ui-button-raised ui-button-flat ui-button-plain" style="color: #fff "/></a>
+                </div>
+                <!--final da primeira coluna-->
+
+                <div class="segunda-coluna">
+                    <h3 class="titulo titulo-bemvindo">bem vindo</h3>
+                    <p class="descrição descrição-segunda">descrição</p>
+                    <p class="descrição descrição-segunda">descrição</p>
+
+                    <form class="form" style="margin: 20px;">
+
+                        <span class="ui-input-icon-left">
+                            <i class="pi pi-envelope" />
+                            <p:inputText placeholder="E-mail" />
+                        </span>
+                        <span class="ui-input-icon-left">
+                            <i class="pi pi-key" />
+                            <p:inputText class="password" placeholder="Senha" />
+                        </span>
+                        <a href="#" style="margin: 15px 0px; text-align: center;">Esqueceu sua senha ?</a>
+                        <p:button href="AthleticManager/Login.xhtml" value="sign in" styleClass="ui-button-outlined" style="background-color: dodgerblue; color:#fff;" />
+                    </form>
+
+                </div> 
+                <!--final da segunda coluna-->
+            </div>
+            <!--<- final do primeiro conteudo->-->
+            <div class="conteudo segundo-conteudo">
+                <!--inicio do segundo conteudo-->
+                <div class="segundo primeira-coluna">
+                    <h2 class="titulo titulo-criarconta">olá, amigo</h2>
+                    <p class="descrição descrição-primeira">faça seu login aqui</p>
+                    <p class="descrição descrição-primeira">por favor insira seus  dados pessoas </p>
+                    <a href="/AthleticManager/Login.xhtml"><p:button value="sign up" styleClass="ui-button-raised ui-button-flat ui-button-plain" 
+                                                            style="color: #fff;" /></a> 
+                </div>
+                <!--final da primeira coluna-->
+                <div class="segundo segunda-coluna">
+                    <h3 class="titulo titulo-bemvindo">criar nova conta</h3>
+                    <p class="descrição descrição-segunda">sign in developer</p>
+                    <h:form>
+                        <span class="ui-input-icon-left">
+                            <i class="pi pi-user" />
+                            <p:inputText placeholder="Nome"  value="#{cadastroBean.cadastro.nome}"/>
+                        </span>
+                        <span class="ui-input-icon-left">
+                            <i class="pi pi-envelope" />
+                            <p:inputText placeholder="E-mail" value="#{cadastroBean.cadastro.email}"/>
+                        </span>
+                        <span class="ui-input-icon-left">
+                            <i class="pi pi-key" />
+                            <p:inputText placeholder="Senha" value="#{cadastroBean.cadastro.senha}"/>
+                        </span>
+
+                        <p:commandButton actionListener="#{cadastroBean.consultaEmail()}" value="sign in" onclick="window.location.href='Login.xhtml'" styleClass="ui-button-outlined" style="background-color: dodgerblue; color: #fff; " />
+                    </h:form>
+                </div> 
+                <!--final da segunda coluna-->
+            </div>
+            <!--final do segundo conteudo-->
+        </div>
+
+        }
+        <script>
+
+        </script>
+
+    </h:body>
+</html>

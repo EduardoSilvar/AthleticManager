@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+
+            }
+            .titulo{
+                font-family: sans-serif;
+                background-color: dodgerblue;
+                border-radius: 5px; 
+                padding: 0px 10px;
+            }
+            .primeiras-noticias{
+                display: flex;
+                flex-direction: row;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+            .noticia-membros{
+                margin-bottom: 10px; background-color: dodgerblue; height: 80px; width: 200px; border-radius: 10px;
+                margin: 0px auto;
+                text-align: center;
+
+            }   
+            .noticias{
+                height: 50px;
+                background-color: dodgerblue;
+                padding: 10px;
+                border-radius: 10px;
+                font-size: 20px;
+                margin: 0px auto;
+            }
+            .noticia-extimativa{
+                margin-bottom: 10px; background-color: dodgerblue; height: 80px; width: 300px; border-radius: 10px;
+                margin: 0px auto;
+                text-align: center;
+            }
+
+            .foto-perfil{
+                border-radius: 20px;
+                width: 300px;
+
+            }
+            .ui-panelgrid td, .ui-panelgrid tr {
+                border-style: none !important
+            }
+
+
+            .descrição{ width: 90%;
+
+            }
+            .container-perfil{
+                border-radius: 10px;
+                background-color: lightgray;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin: 0% 5%;
+
+            }
+            .informações-membros{
+                border: 2px solid #add8e6;
+                border-radius: 10px;
+                margin-left: auto;
+                margin: 20px;
+                background-color: lavender;
+
+            }
+            .informações-despesas{
+                border: 2px solid black; 
+                border-radius: 10px;
+                padding:30px;
+                margin-left: 50px;
+
+            }
+            .titulo-membro{
+                font-family: serif;
+                font-size: 25px;
+                color:#4169e1; 
+                background-color:#add8e6;
+                padding: 20px 50px;
+                margin-top: 0px;
+                border-radius: 5px;
+            }
+            .membros{
+                border-bottom: 1px solid black;
+                padding: 10px;
+
+            }
+            .foto{
+                width: 170px;
+            }
+            .carteirinha{
+                margin-bottom: 10px;
+            }
+            .final{margin-top: 50px;
+                   color: red;
+                   font-size: 20px;
+            }
+            .fundo-carteira, .fundo-carteira td {
+                background-color: yellow
+                    !Important;
+            }
+            .perfil,.perfil td{
+                background-color: lavender
+                    !Important;
+            }
+            .informação{
+                display: flex; flex-direction: row; margin: 0% 5%;
+
+
+            }
+
+        </style>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <div class="card">
+            <h:form>
+                <p:growl id="messages"/>
+
+                <p:menubar>
+                    <p:submenu label="Parcerias" icon="pi pi-fw pi-shopping-cart">
+                        <p:submenu label="Editar" icon="pi pi-fw pi-pincel">
+                            <p:menuitem value="Adicionar" icon="pi pi-fw pi-upload"/>
+                            <p:menuitem value="Deletar" icon="pi pi-fw pi-trash"/>
+                            <p:menuitem value="Atualizar" icon="pi pi-fw pi-eye" />
+                        </p:submenu>
+                        <p:menuitem value="Vizualizar" icon="pi pi-fw pi-eye" />
+                    </p:submenu>
+                    <p:submenu label="Contabilidade" icon="pi pi-fw pi-chart-bar">
+                        <p:menuitem value="Gráficos" icon="pi pi-fw pi-chart-line" url="/AthleticManager/Contabilidade.xhtml"/>
+                        <p:menuitem value="Editar" icon="pi pi-fw pi-pencil" url="/AthleticManager/Despesas.xhtml"/>
+                    </p:submenu>
+
+                    <p:submenu label="Membros" icon="pi pi-fw pi-users">
+                        <p:menuitem value="Vizualizar" icon="pi pi-fw pi-users" url="/AthleticManager/Membros.xhtml"/>                      
+                    </p:submenu>
+
+                    <p:submenu label="Eventos" icon="pi pi-fw pi-calendar">
+                        <p:submenu label="Editar" icon="pi pi-fw pi-pencil">
+                            <p:menuitem value="Salvar" icon="pi pi-fw pi-calendar-plus"/>
+                            <p:menuitem value="Deletar" icon="pi pi-fw pi-calendar-minus"/>
+                            <p:menuitem value="Atualizar" icon="pi pi-fw pi-refresh"/>
+                        </p:submenu>
+                        <p:menuitem value="Vizualizar" icon="pi pi-fw pi-eye"/>
+
+                    </p:submenu>
+
+                    <p:divider layout="vertical"/>
+                    <p:menuitem value="Configurações" icon="pi pi-fw pi-cog" />
+
+                    <f:facet name="options">
+                        <p:button value="Perfil" icon="pi pi-fw pi-user" styleClass="ui-button-info"/>
+                    </f:facet>
+                </p:menubar>
+            </h:form>
+        </div>
+        <div>
+            <h2 class="titulo" >Painel de controle</h2>
+            <h:form>
+                <div class="primeiras-noticias">
+                    <div class="noticia-membros">
+                        <h3 class="noticias">total de membros </h3>
+                        <h3 style=" text-align: center; margin-top: 0px;"><p:outputLabel value="#{membrosBean.membros.size()}" style="color: #fff;  font-size: 20px;"/></h3>  
+                    </div>
+                    <div  class="noticia-membros">
+                        <h3 class="noticias">Lucros do Mês  </h3> 
+                        <h3 style=" text-align: center; margin-top: 0px;"><p:outputLabel value="1000$" style="color: #fff;  font-size: 20px;"/></h3>  
+                    </div>
+                    <div  class="noticia-extimativa">
+                        <h3 class="noticias">Estimativas de Lucros com o Proximo Mês</h3> 
+                        <h3 style=" text-align: center; margin-top: 0px;"> <p:outputLabel value="3000$"  style="color: #fff;  font-size: 20px;" /> </h3>
+                    </div>
+                    <div  class="noticia-extimativa">
+                        <h3 class="noticias">Desenvolvimento da Empresa </h3>
+                        <h3  style=" text-align: center; margin-top: 0px;">  <p:outputLabel value="3000$"  style="color: #fff;  font-size: 20px;" /></h3>
+                    </div>
+                </div>
+                <div class="container-perfil" >
+                    <div class="foto-perfil" >
+                        <img class="foto foto-perfil" src="https://www.unifacs.br/wp-content/uploads/2020/06/atletica-unifacs.png" />
+                    </div>
+                    <h:form>
+                        <div class="descrição" >
+                            <p:outputLabel  style="font-size: 35px; font-family: initial ; color: black;" value="ATLETICA DE INFORMATICA DO INSTITUTO FEDERAL DO PIAUÍ - IFPI"/><br/>
+                            <p:outputLabel  style="font-size: 25px; font-family: initial;color: black; " class="output" value="Endereço: Parnaíba"/><br/>
+                            <p:outputLabel style="font-size: 25px; font-family: initial ;color: black;" class="output" value="Mensalidade : 50$"/><br/>
+                            <p:outputLabel style="font-size: 25px;font-family: initial ;color: black;" class="output" value="Benefícios : Prioridade da reserva de espaços esportivos para o treinamento, 
+                                           recebimento de materiais de apoio em eventos realizados junto ao IFPI "/><br/>
+                        </div>
+                    </h:form>
+
+
+                </div>
+                <div class="informação"  >
+                    <div class="informações-membros"  >
+                        <h2 class="titulo-membro"  >Membros adicionados Recentimente</h2>
+                        <div>
+                            <p:dataTable var="membro" value="#{membrosBean.membros}"  >
+                                <p:column headerText="Nome">
+                                    <h:outputText value="#{membro.nome}" />
+                                </p:column>
+                                <p:column headerText="Endereço">
+                                    <h:outputText value="#{membro.endereco}" />
+                                </p:column>
+                                <p:column headerText="Telefone">
+                                    <h:outputText value="#{membro.celular}" />
+                                </p:column>
+                                <p:column>
+                                    <p:button styleClass="ui-button-raised ui-button-flat" value="vizualizar" style="background-color: deepskyblue; color: #fff; margin-bottom: 7px;"/>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                    </div>
+                    <!--                    <div>
+                                            <div class="informações-membros" >
+                                                <h2 class="titulo-membro"  >Eventos</h2>
+                                                <div class="membros">
+                                                    <p:outputLabel style="font-size: 20px; font-family: initial ; color: black; " value="nome: Carlos Eduardo da Silva Machado"/><br/>
+                                                    <p:outputLabel style="font-size: 20px; font-family: initial ; color: black;" value="Endereço: carpina"/><br/>
+                                                    <p:button styleClass="ui-button-raised ui-button-flat" value="vizualizar" style="background-color: deepskyblue; color: #fff; margin-bottom: 7px;"/>
+                                                </div>
+                    
+                                                <div class="membros">
+                                                    <p:outputLabel style="font-size: 20px; font-family: initial ; color: black; " value="nome: Larissa Golçalves Estevam "/><br/>
+                                                    <p:outputLabel style="font-size: 20px; font-family: initial ; color: black;" value="Endereço: Lopionopolis"/><br/>
+                                                    <p:button styleClass="ui-button-raised ui-button-flat" value="vizualizar" style="background-color: deepskyblue; color: #fff; margin-bottom: 7px "/>
+                                                </div>
+                    
+                                                <div class="membros">
+                                                    <p:outputLabel style="font-size: 20px; font-family: initial ; color: black; " value="nome: Ricado da silva Carvalho "/><br/>
+                                                    <p:outputLabel style="font-size: 20px; font-family: initial ; color: black;" value="Endereço: Copacabana"/><br/>
+                                                    <p:button styleClass="ui-button-raised ui-button-flat" value="vizualizar" style="background-color: deepskyblue; color: #fff; margin-bottom: 7px"/>
+                                                </div>
+                    
+                                                <div class="membros">
+                                                    <p:outputLabel style="font-size: 20px; font-family: initial ; color: black; " value="nome: Lavia Golçalves Estevam "/><br/>
+                                                    <p:outputLabel style="font-size: 20px; font-family: initial ; color: black;" value="Endereço: Lopionopolis"/><br/>
+                                                    <p:button styleClass="ui-button-raised ui-button-flat" value="vizualizar" style="background-color: deepskyblue; color: #fff;  margin-bottom: 7px"/>
+                                                </div>
+                                                <div class="membros" style="border-bottom: 0px;">
+                                                    <p:outputLabel style="font-size: 20px; font-family: initial ; color: black; " value="nome: Lara Golçalves Estevaam "/><br/>
+                                                    <p:outputLabel style="font-size: 20px; font-family: initial ; color: black;" value="Endereço: Lopionopolis"/><br/>
+                                                    <p:button styleClass="ui-button-raised ui-button-flat" value="vizualizar" style="background-color: deepskyblue; color: #fff;  margin-bottom: 7px; "/>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                    <div>
+                        <div class="informações-membros">
+                            <h2 class="titulo-membro">Ultimas Despesas da Organização</h2>
+                            <div>
+                                <p:dataTable var="despesa" value="#{despesasBean.despesas}"  >
+                                    <p:column headerText="Descrição">
+                                        <h:outputText value="#{despesa.descricao}" />
+                                    </p:column>
+                                    <p:column headerText="valor">
+                                        <h:outputText value="#{despesa.valor}" />
+                                    </p:column>
+                                    <p:column headerText="Data">
+                                        <h:outputText value="#{despesa.data}" />
+                                    </p:column>
+                                    <p:column>
+                                        <p:button styleClass="ui-button-raised ui-button-flat" value="vizualizar" style="background-color: deepskyblue; color: #fff; margin-bottom: 7px;"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 style="text-align: center;"> Eventos </h2>
+                    <f:view contentType="text/html">
+                        <p:carousel autoplayInterval="3000"   circular="true" numVisible="3" numScroll="2"  >  
+
+                            <p:graphicImage value="./imagens/audi.jpg" style="width: 350px; margin: 20px 20px;" />
+                            <p:graphicImage style="width: 350px; margin:  20px 20px;"  value="https://www.primefaces.org/showcase/javax.faces.resource/demo/images/product/black-watch.jpg.xhtml"  />
+                            <p:graphicImage style="width: 350px; margin:  20px 20px;"  value="https://www.primefaces.org/showcase/javax.faces.resource/demo/images/product/bamboo-watch.jpg.xhtml"  />
+                            <p:graphicImage style="width: 350px; margin: 20px 20px;"  value="https://www.primefaces.org/showcase/javax.faces.resource/demo/images/product/black-watch.jpg.xhtml"  />
+                        </p:carousel>
+                    </f:view>
+                </div>
+                <h1 style="text-align: center;"> Estilo da sua Carteirinha</h1>
+
+                <div style="margin-top: 20px; background-color: #ffcc00; margin: 2% 5%">
+                    <h3 style="text-align: center; font-size: 30px; margin-bottom: 20px;"> Atletica de Informatica do Instituto Federal do Piauí - IFPI</h3>
+
+                    <!--<p:panelGrid columns="3" class="fundo-carteira">-->
+                    <div style="display: flex; flex-direction: row; margin-left: 30px; margin-right: 30px">
+                        <img  class="foto" src="https://gpapba.files.wordpress.com/2014/07/3x4.jpg"/>
+                        <div>
+                            <div class="carteirinha">
+                                <b><p:outputLabel style="font-size: 25px"  value="Nome : carlos Eduardo da silva Machado"/></b><br/>
+                            </div>
+                            <div class="carteirinha">
+                                <b>  <p:outputLabel style="font-size: 25px" value="Curso :Informatica"/></b> <br/>
+                            </div>
+                            <div class="carteirinha" >
+                                <b> <p:outputLabel style="font-size: 25px" value="Matricula : 0001"/></b> <br/>
+                            </div>
+                            <div class="carteirinha">
+                                <b>   <p:outputLabel style="font-size: 25px" value="CPF : 097.606.633.50"/></b> <br/>
+                            </div>
+                            <div class="carteirinha final">
+                                <p:outputLabel style="font-size: 25px" value="Valido apenas com a apresentação do documento de identidade"/>
+                            </div>
+                        </div>
+
+                        <!--<h:form>-->
+                        <div style="margin-left: 300px;">
+                            <img src="data:image/png;base64,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"/>
+                            <br/> <p:outputLabel style="font-size: 20px;" value="Data de nascimento : 08/11/2003"/>
+                        </div>
+                        <!--</h:form>-->
+                    </div>
+                    <!--</p:panelGrid>-->
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

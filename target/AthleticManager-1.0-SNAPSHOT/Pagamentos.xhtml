@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            .titulo{
+                font-family: sans-serif;
+                /*                /background-color: dodgerblue;/*/
+                border-radius: 5px; 
+                padding: 0px 10px;
+
+            }
+            .tabela{position: absolute;
+                    margin: 10px 20px;
+            }
+            .tela{display: none;
+                  /*/margin: auto auto;/*/ 
+                  justify-content: center;
+                  padding: 25px;
+                  margin:0% 20%;
+                  width: 700px; 
+                  height: 300px;
+                  border: 1px solid #cccccc;
+                  border-radius: 10px;
+                  position: absolute;
+                  background-color: #cccccc;
+            }
+        </style>
+        <script>
+            function mostra() {
+                document.getElementById('tela').style.display = 'block';
+            }
+
+        </script>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div class="card">
+
+                <p:growl id="messages"/>
+
+                <p:menubar>
+                    <p:submenu label="Parcerias" icon="pi pi-fw pi-shopping-cart">
+                        <p:submenu label="Editar" icon="pi pi-fw pi-pincel">
+                            <p:menuitem value="Adicionar" icon="pi pi-fw pi-upload"/>
+                            <p:menuitem value="Deletar" icon="pi pi-fw pi-trash"/>
+                            <p:menuitem value="Atualizar" icon="pi pi-fw pi-eye" />
+                        </p:submenu>
+                        <p:menuitem value="Vizualizar" icon="pi pi-fw pi-eye" />
+                    </p:submenu>
+                    <p:submenu label="Contabilidade" icon="pi pi-fw pi-chart-bar">
+                        <p:menuitem value="Gráficos" icon="pi pi-fw pi-chart-line" url="/AthleticManager/Contabilidade.xhtml"/>
+                        <p:menuitem value="Editar" icon="pi pi-fw pi-pencil" url="/AthleticManager/Despesas.xhtml"/>
+                    </p:submenu>
+
+                    <p:submenu label="Membros" icon="pi pi-fw pi-users">
+
+                        <p:menuitem value="Vizualizar" icon="pi pi-fw pi-users" url="/AthleticManager/Membros.xhtml"/>
+                    </p:submenu>
+
+                    <p:submenu label="Eventos" icon="pi pi-fw pi-calendar">
+                        <p:submenu label="Editar" icon="pi pi-fw pi-pencil">
+                            <p:menuitem value="Salvar" icon="pi pi-fw pi-calendar-plus"/>
+                            <p:menuitem value="Deletar" icon="pi pi-fw pi-calendar-minus"/>
+                            <p:menuitem value="Atualizar" icon="pi pi-fw pi-refresh"/>
+                        </p:submenu>
+                        <p:menuitem value="Vizualizar" icon="pi pi-fw pi-eye"/>
+
+                    </p:submenu>
+
+                    <p:divider layout="vertical"/>
+                    <p:menuitem value="Configurações" icon="pi pi-fw pi-cog" />
+
+                    <f:facet name="options">
+                        <p:button value="Perfil" icon="pi pi-fw pi-user" styleClass="ui-button-info"/>
+                    </f:facet>
+                </p:menubar>
+            </div>
+            <h2 class="titulo">Pagamentos</h2>
+            <div class="tabela">
+
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <span class="ui-input-icon-right">
+                        <i class="pi pi-search" />
+                        <p:inputText type="search" style="width: 1000px" placeholder="Filtrar Campos por Descrição" />
+                    </span>
+                </div>
+                <div style="border: 1px solid #cccccc; padding: 10px; border-radius: 10px;">
+                    <div style="text-align: right;">
+                        <p:commandButton value="Novo Pagamento" styleClass="ui-button-raised" onclick="mostra()"  />
+                    </div>
+                    <div>
+                        <p:dataTable var="cliente" value="#{pagamentosBean.pagamentos}"  >
+                            <p:column headerText="Id">
+                                <h:outputText value="#{cliente.id}" />
+                            </p:column>
+                            <p:column headerText="Mês Referente">
+                                <h:outputText value="#{cliente.mesReferente}" />
+                            </p:column>
+                            <p:column headerText="Id Membro">
+                                <h:outputText value="#{cliente.idMembro.id}" />
+                            </p:column>
+                            <p:column headerText="Nome do Membro">
+                                <h:outputText value="#{cliente.idMembro.nome}" />
+                            </p:column>
+                            <p:column>
+                                <p:commandButton value="Deletar" styleClass="ui-button-raised ui-button-danger" update="@form" actionListener="#{pagamentosBean.Deletar(cliente.id)}" style="margin: 20px ;"  />
+                            </p:column>
+                            <p:column>
+                                <h:commandLink >
+                                    <p:commandButton value="Atualizar" styleClass="ui-button-raised ui-button-secondary" update="@form" style="margin: 20px ;"  />
+                                </h:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="tela" class="tela">
+                <h2 style="text-align: center">Adicionar um novo Pagamento</h2>
+                <div style="margin-top: 5px;">
+                    <p:outputLabel value="Id Membro" for="idmembro"/>
+                    <p:inputNumber id="idmembro" value="#{pagamentosBean.id_membro}" style="width: 600px; margin: 10px 10px;"/>
+                </div>
+                <div style=" display: flex; flex-direction: row;">
+                    <div style="margin-top: 5px; margin-left: auto; margin-right: auto;">
+                        <p:outputLabel value="Mes referente" for="mes"/><br/>
+                        <p:inputText id="mes" style="width: 250px" value="#{pagamentosBean.pagamento.mesReferente}" />
+                    </div>
+                </div>
+                <div style="margin-top: 20px; margin-left: 400px; display: flex; flex-direction: row;">
+                    <p:button value="Cancelar" icon="pi pi-times" styleClass="ui-button-raised ui-button-danger" iconPos="right" style="margin-right: 20px;" href="/AthleticManager/Pagamentos.xhtml" />
+                    <p:commandButton value="Submeter" icon="pi pi-check" iconPos="right" actionListener="#{pagamentosBean.salvar}" update="@form"/> 
+
+                </div>
+            </div>
+        </h:form>
+
+    </h:body>
+</html>
