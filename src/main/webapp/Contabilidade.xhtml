@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="background-color: #fff">
+ <div class="card">
+            <h:form>
+                <p:growl id="messages"/>
+
+                <p:menubar>
+                    <p:submenu label="Parcerias" icon="pi pi-fw pi-shopping-cart">
+                        <p:submenu label="Editar" icon="pi pi-fw pi-pincel">
+                            <p:menuitem value="Adicionar" icon="pi pi-fw pi-upload"/>
+                            <p:menuitem value="Deletar" icon="pi pi-fw pi-trash"/>
+                            <p:menuitem value="Atualizar" icon="pi pi-fw pi-eye" />
+                        </p:submenu>
+                        <p:menuitem value="Vizualizar" icon="pi pi-fw pi-eye" />
+                    </p:submenu>
+                    <p:submenu label="Contabilidade" icon="pi pi-fw pi-chart-bar">
+                        <p:menuitem value="Gráficos" icon="pi pi-fw pi-chart-line" url="/AthleticManager/Contabilidade.xhtml"/>
+                        <p:menuitem value="Editar" icon="pi pi-fw pi-pencil" url="/AthleticManager/Despesas.xhtml"/>
+                          
+                    </p:submenu>
+
+                    <p:submenu label="Membros" icon="pi pi-fw pi-users">
+                        <p:menuitem value="Vizualizar" icon="pi pi-fw pi-users" url="/AthleticManager/Membros.xhtml"/>
+
+                    </p:submenu>
+
+                    <p:submenu label="Eventos" icon="pi pi-fw pi-calendar">
+                        <p:submenu label="Editar" icon="pi pi-fw pi-pencil">
+                            <p:menuitem value="Salvar" icon="pi pi-fw pi-calendar-plus"/>
+                            <p:menuitem value="Deletar" icon="pi pi-fw pi-calendar-minus"/>
+                            <p:menuitem value="Atualizar" icon="pi pi-fw pi-refresh"/>
+                        </p:submenu>
+                        <p:menuitem value="Vizualizar" icon="pi pi-fw pi-eye"/>
+
+                    </p:submenu>
+
+                    <p:divider layout="vertical"/>
+                    <p:menuitem value="Configurações" icon="pi pi-fw pi-cog" />
+
+                    <f:facet name="options">
+                        <p:button value="Perfil" icon="pi pi-fw pi-user" styleClass="ui-button-info"/>
+                    </f:facet>
+                </p:menubar>
+            </h:form>
+        </div>
+        <h:form>
+            <div style="display: flex; flex-direction: row; justify-content: center; ">
+            <div>
+                <p:chart model="#{graficoBean.lineModel1}"  style="height:400px; width:600px; ; border-radius :10px; margin: 40px; " type="line"  />
+            </div>
+            
+            <div class="p-col-12 p-lg-6 p-xl-4">
+                <div class="card">
+                    <p:chart  type="pie" model="#{graficoPie.pieModel1}"
+                              style="height:375px; width:500px; border-radius :10px;margin: 40px;" widgetVar="chart" />
+                </div>
+            </div>
+                
+                </div>
+            <div style=" display: flex;justify-content: center;">
+                <p:chart type="line" model="#{graficoLinhas.lineModel1}"
+                style="height:400px;width:90%;" />
+                </div>
+        </h:form>
+        
+    </h:body>
+</html>
